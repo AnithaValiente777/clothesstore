@@ -26,11 +26,6 @@ public class DetailShoppingCartRestController {
 	@Autowired
 	private IDetailShoppingCartServiceAPI detailShoppingCartServiceAPI;
 
-	
-	@GetMapping(value = "/all")
-	public List<DetailShoppingCartDTO> getAll() throws Exception {
-		return detailShoppingCartServiceAPI.getAll();
-	}
 
 	@GetMapping(value = "/find/{id}")
 	public DetailShoppingCartDTO find(@PathVariable String id) throws Exception {
@@ -39,12 +34,12 @@ public class DetailShoppingCartRestController {
 	
 	@GetMapping(value = "/findByCodeCart/{codeCart}")
 	public List<DetailShoppingCartDTO> findByCodeCart(@PathVariable String codeCart) throws Exception {
-		return detailShoppingCartServiceAPI.getByCode(codeCart);
+		return detailShoppingCartServiceAPI.getByCodeCart(codeCart);
 	}
 	
 	@GetMapping(value = "/findByCodeProduct/{codeProduct}")
 	public List<DetailShoppingCartDTO> findByCodeProduct(@PathVariable String codeProduct) throws Exception {
-		return detailShoppingCartServiceAPI.getByCode(codeProduct);
+		return detailShoppingCartServiceAPI.getByCodeProduct(codeProduct);
 	}
 
 	@PostMapping(value = "/save/{id}")
