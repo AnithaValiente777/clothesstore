@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
@@ -16,6 +17,7 @@ import com.technicaltest.clothesstore.dto.ImageProductDTO;
 import com.technicaltest.clothesstore.model.ImageProduct;
 import com.technicaltest.clothesstore.service.api.IImageProductServiceAPI;
 
+@Service
 public class ImageProductServiceImpl extends GenericServiceImpl<ImageProduct, ImageProductDTO> implements IImageProductServiceAPI{
 
 	@Autowired
