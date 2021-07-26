@@ -2,6 +2,7 @@ package com.technicaltest.clothesstore.commons;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +58,34 @@ public abstract class GenericServiceImpl<I, O> implements GenericServiceAPI<I, O
 		return null;
 	}
 
+
+	@Override
+	public List<O> getByName(String name) throws Exception {
+		List<O> result = new ArrayList<O>();
+		ApiFuture<QuerySnapshot> query =  getCollection().whereEqualTo("name", name).get();
+		List<QueryDocumentSnapshot> documents = query.get().getDocuments();
+		for (QueryDocumentSnapshot doc : documents) {
+			O object = doc.toObject(clazz);
+			PropertyUtils.setProperty(object, "id", doc.getId());
+			result.add(object);
+		}
+		return result;
+	}
+	
+	
+	@Override
+	public List<O> getByCode(String code) throws Exception {
+		List<O> result = new ArrayList<O>();
+		ApiFuture<QuerySnapshot> query =  getCollection().whereEqualTo("code", code).get();
+		List<QueryDocumentSnapshot> documents = query.get().getDocuments();
+		for (QueryDocumentSnapshot doc : documents) {
+			O object = doc.toObject(clazz);
+			PropertyUtils.setProperty(object, "id", doc.getId());
+			result.add(object);
+		}
+		return result;
+	} 
+	
 	@Override
 	public List<O> getAll() throws Exception {
 		List<O> result = new ArrayList<O>();

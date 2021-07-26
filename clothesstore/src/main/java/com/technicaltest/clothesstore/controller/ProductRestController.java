@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.technicaltest.clothesstore.dto.ProductDTO;
 import com.technicaltest.clothesstore.model.Product;
-import com.technicaltest.clothesstore.service.api.ProductServiceAPI;
+import com.technicaltest.clothesstore.service.api.IProductServiceAPI;
 
 
 @RestController
@@ -24,7 +24,7 @@ import com.technicaltest.clothesstore.service.api.ProductServiceAPI;
 public class ProductRestController {
 
 	@Autowired
-	private ProductServiceAPI productServiceAPI;
+	private IProductServiceAPI productServiceAPI;
 
 	@GetMapping(value = "/all")
 	public List<ProductDTO> getAll() throws Exception {
@@ -34,6 +34,21 @@ public class ProductRestController {
 	@GetMapping(value = "/find/{id}")
 	public ProductDTO find(@PathVariable String id) throws Exception {
 		return productServiceAPI.get(id);
+	}
+
+	@GetMapping(value = "/findByName/{name}")
+	public List<ProductDTO> findByName(@PathVariable String name) throws Exception {
+		return productServiceAPI.getByName(name);
+	}
+	
+	@GetMapping(value = "/findByCode/{code}")
+	public List<ProductDTO> findByCode(@PathVariable String code) throws Exception {
+		return productServiceAPI.getByCode(code);
+	}
+	
+	@GetMapping(value = "/findByMoreSearched")
+	public List<ProductDTO> findByMoreSearched() throws Exception {
+		return productServiceAPI.getMoreSearched();
 	}
 
 	@PostMapping(value = "/save/{id}")
@@ -57,4 +72,5 @@ public class ProductRestController {
 
 		return new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
 	}
+	
 }

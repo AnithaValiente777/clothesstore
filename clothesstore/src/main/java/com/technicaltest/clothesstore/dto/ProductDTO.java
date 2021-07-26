@@ -8,10 +8,18 @@ public class ProductDTO {
 	private String description;
 	private Double price;
 	private Double discount;
+	private int searched;
 	private String imgfront;
 	private String imgBack;
-	//private Double priceWithDiscount;
+	private Double priceWithDiscount;
 	
+	
+	public int getSearched() {
+		return searched;
+	}
+	public void setSearched(int searched) {
+		this.searched = searched;
+	}
 	public String getId() {
 		return id;
 	}
@@ -61,15 +69,7 @@ public class ProductDTO {
 		this.imgBack = imgBack;
 	}
 	
-	/*public ProductDTO(String code, String name, String description, Double price, Double discount) {
-		this.code = code;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.discount = discount;
-	}*/
-	
-	/*public Double getPriceWithDiscount(){
+	public Double getPriceWithDiscount(){
 		return priceWithDiscount = (price * discount)/100;
-	}*/
+	}
 }
